@@ -14,7 +14,11 @@ function App() {
       <Route path='/registration'>
         <Registration />
       </Route>
-      <Route path='/mainPage' render={() => localStorage.getItem('token') ? <MainPage /> : <Redirect to="/autorization" />} />
+      <Route path='/mainPage' 
+        render={() => localStorage.getItem('token') 
+        ? <MainPage /> 
+        : <Redirect to="/autorization" />} 
+      />
       <Redirect from='/' to='/autorization'/>
     </Switch>
   );

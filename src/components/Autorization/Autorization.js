@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import InputPassword from '../InputsButtons/InputPassword';
-import InputLogin from '../InputsButtons/InputLogin';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import InputPassword from '../InputsButtons/InputPassword';
+import InputLogin from '../InputsButtons/InputLogin';
 import logo1 from '../../img/logo1.png';
-import build from '../../img/build.png'
-import '../Registration/Registration.scss'
+import build from '../../img/build.png';
+import '../Registration/Registration.scss';
 
 const Autorization = () => {
   const [loginInput, setLoginInput] = useState('')  
@@ -60,7 +60,6 @@ const Autorization = () => {
           <img src={logo1} alt=""></img>
           <h1>Авторизоваться в системе</h1>
         </div>
-
         <div className='main'>
           <div className='main-build'>
             <img src={build} alt=""></img>
@@ -94,8 +93,7 @@ const Autorization = () => {
                 >
                 Регистрация
               </Button>
-              </div>
-              
+              </div>              
               <Snackbar
                 anchorOrigin={{
                   vertical: 'top',
@@ -106,9 +104,7 @@ const Autorization = () => {
                 message={message}
               />
               </div>
-
           </div>
-
         </div>
       </div>
     </div>

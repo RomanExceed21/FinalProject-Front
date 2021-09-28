@@ -1,13 +1,11 @@
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
+import { InputAdornment, TextField } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import './InputLogin.scss'
 
 const InputLogin = ({loginChange}) => {
-
   return (
     <TextField
-      className = 'input-login'
+      className ="input-login"
       id="input-with-icon-textfield"
       onChange={loginChange}
       required={true}
@@ -22,5 +20,4 @@ const InputLogin = ({loginChange}) => {
     />
   )
 }
-
 export default InputLogin;

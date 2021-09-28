@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 
-export default function Sorted() {
+const Sorted = () => {
   const currencies = [
     {value: ''},
     {value: 'Имя пациента'},    
@@ -9,6 +9,7 @@ export default function Sorted() {
     {value: 'Дата'},
     {value: 'Жалоба'},
   ];
+
   return (
     <div>
       <TextField
@@ -17,18 +18,19 @@ export default function Sorted() {
         label=""
         className='input-sort'
         value='' 
-        // onChange={(e) => setDoctorNameEdit(e.target.value)}
         SelectProps={{
           native: true,
         }}
         variant="outlined"
       >
-      {currencies.map((option) => (
+      { currencies.map((option) => (
         <option key={option.value} value={option.value}>
           {option.value}
         </option>
-      ))}
+      )) }
       </TextField>
     </div>
   )
 }
+
+export default Sorted;

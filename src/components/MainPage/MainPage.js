@@ -1,23 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import { TextField, Button, IconButton, Fab, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import logo1 from '../../img/logo1.png'
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import logo1 from '../../img/logo1.png';
 import PacientName from './Components/PacientName';
 import './MainPage.scss';
 
 const MainPage = () => {
   const history = useHistory();
   let temp = null;
+  
   const [pacientName, setPacientName] = useState('');
   const [doctorName, setDoctorName] = useState('');
   const [dataVisit, setDataVisit] = useState('');
@@ -136,18 +130,18 @@ const MainPage = () => {
   }
 
   const filterClear = () => {
-    setShowFilter(false);
-    setFilterDateFrom('');
-    setFilterDateTo('');
     const token = localStorage.getItem('token');
     axios.get('http://localhost:8000/allVisits', {
       headers: {
         'Authorization': `${token}`,
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json;charset=utf-8'
-    },
+      },
     }).then(res => {
       setAllData(res.data.data);
+      setShowFilter(false);
+      setFilterDateFrom('');
+      setFilterDateTo('');
     });
   }
   
@@ -260,11 +254,11 @@ const MainPage = () => {
               }}
               variant="outlined"
             >
-            {currencies.map(option => (
+            { currencies.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
-            ))}
+            )) }
             </TextField>
           </div>
           {(sortValue !== '_id') 

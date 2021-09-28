@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import InputLogin from '../InputsButtons/InputLogin';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
+import { Button, Snackbar} from '@material-ui/core';
 import InputPassword from '../InputsButtons/InputPassword';
 import InputPassRepeat from '../InputsButtons/InputPassRepeat';
 import logo1 from '../../img/logo1.png';
@@ -34,7 +33,7 @@ const Registration = () => {
     message: ''
   });
 
-  let history = useHistory();
+  const history = useHistory();
 
   
   const loginChange = (e) => {
@@ -50,20 +49,23 @@ const Registration = () => {
   const handleSubmit = () => {
     const passwordField = passwordInput.password.split('')
     if (loginInput.length < 6 || passwordInput.password.length < 6) {
-      setState({ ...state, open: true, message: 'Логин и пароль должны быть не меньше 6 символов \nПароль должен содержать только латинские символы и минимум одну цифру'});
-      return
+      return setState({ ...state, 
+        open: true, 
+        message: 'Логин и пароль должны быть не меньше 6 символов \nПароль должен содержать только латинские символы и минимум одну цифру'});      
     }
 
     passwordField.forEach ((element) => {
       if (!/[a-zA-Z]/.test(element) && !/[0-9]/.test(element)) {
-        setState({ ...state, open: true, message: 'Пароль должен содержать только латинские буквы и цифры'});
-        return
+        return setState({ ...state, 
+          open: true, 
+          message: 'Пароль должен содержать только латинские буквы и цифры'});
       }
     })
 
     if (!/[0-9]/.test(passwordField) || !/[a-zA-Z]/.test(passwordField)) {
-      setState({ ...state, open: true, message: 'Пароль должен содержать хотя бы одну цифру или букву'});
-      return
+      return setState({ ...state, 
+        open: true, 
+        message: 'Пароль должен содержать хотя бы одну цифру или букву'});
     }
 
     if(passwordRepeatInput.password !== passwordInput.password) {
@@ -132,19 +134,18 @@ const Registration = () => {
                 >
                   Авторизация
                 </Button>
-              </div>
             </div>
-              <Snackbar
-                anchorOrigin={{ 
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                open={open}
-                onClose={handleClose}
-                message={message}
-              />
+            </div>
+            <Snackbar
+              anchorOrigin={{ 
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              open={open}
+              onClose={handleClose}
+              message={message}
+            />
         </div>
-
         </div>
       </div>
     </div>

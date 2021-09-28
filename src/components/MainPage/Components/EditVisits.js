@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { Button, TextField } from '@material-ui/core';
 import './EditVisits.scss';
 
 const EditVisits = ({ setModalActivEdit, index, setAllData, allData, value}) => {
-
-
   const [nameEdit, setNameEdit] = useState(value.pacientName);
   const [doctorNameEdit, setDoctorNameEdit] = useState(value.doctorName);
   const [dateEdit, setDateEdit] = useState(value.dateOfVisit);
@@ -20,7 +17,7 @@ const EditVisits = ({ setModalActivEdit, index, setAllData, allData, value}) => 
       doctorName: doctorNameEdit,
       dateOfVisit: dateEdit,
       complaintText: complaintEdit
-  },  {headers: {
+    }, { headers: {
       Authorization: `${token}`,
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json;charset=utf-8' 
@@ -126,8 +123,7 @@ const EditVisits = ({ setModalActivEdit, index, setAllData, allData, value}) => 
             Cancel
           </Button>
         </div>
-      </div>
-      
+      </div>      
     </div>
   )
 }

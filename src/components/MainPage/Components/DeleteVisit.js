@@ -2,8 +2,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import './DeleteVisit.scss';
 
-const DeleteVisit = ({modalActiveDel, setModalActiveDel, index, setAllData, allData, inputDelMessage}) => {
-  
+const DeleteVisit = ({modalActiveDel, setModalActiveDel, index, setAllData, allData, inputDelMessage}) => {  
   const { _id } = allData[index];
 
   const removeVisit = () => {
@@ -18,6 +17,7 @@ const DeleteVisit = ({modalActiveDel, setModalActiveDel, index, setAllData, allD
       setModalActiveDel(false);   
     });
   }
+  
   return (
     <div className={modalActiveDel >= 0 ? 'modal active' : 'modal'}>
       <div className='modal-content'>

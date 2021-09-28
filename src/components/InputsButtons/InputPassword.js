@@ -1,6 +1,6 @@
-import React from 'react'
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+// import clsx from 'clsx';
+// import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,24 +8,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import './LoginPassword.scss'
-
-
+import './LoginPassword.scss';
 
 const InputPassword = ({passwordInput, setPasswordInput}) => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    },
-    textField: {
-      width: '100%',
-    },
-  }));
-  const classes = useStyles();
 
   const passwordChange = (prop) => (event) => {
     setPasswordInput({ ...passwordInput, [prop]: event.target.value });
@@ -41,7 +26,7 @@ const InputPassword = ({passwordInput, setPasswordInput}) => {
   
   return (
     <div>
-      <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+      <FormControl variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"

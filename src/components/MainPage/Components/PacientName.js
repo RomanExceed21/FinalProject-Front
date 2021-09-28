@@ -39,14 +39,14 @@ const PacientName = ({allData, setAllData}) => {
               onClick={() => setModalActivEdit(index)} 
             />
           </div>  
-          {modalActiveDel === index && <DeleteVisit 
+          {modalActiveDel && <DeleteVisit 
             modalActiveDel={modalActiveDel}
             setModalActiveDel={setModalActiveDel}
             setAllData={setAllData}
             allData={allData}
             index={index}
           />}
-          {modalActiveEdit === index && <EditVisits 
+          {modalActiveEdit && <EditVisits 
             modalActiveEdit={modalActiveEdit}
             setModalActivEdit={setModalActivEdit}
             setAllData={setAllData}

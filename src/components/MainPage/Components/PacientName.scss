@@ -1,10 +1,9 @@
 .total-list {
   width: 100%;
   display: flex;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-  margin: 0 10px 0 0;
+  border: 1px solid black;
+  border-top: none;
+  margin-right: 10px;
 }
 
 .total-list-block {
@@ -17,11 +16,11 @@
 .total-list-buttons {
   width: 3%;
   display: flex;
-  margin: 0 0 0 60px;
+  margin-left: 60px;
 }
 
 @media screen and  (max-width: 800px) {
   .total-list-buttons {
-    margin: 0 0 0 30px;
+    margin-right: 30px;
   }
 }
