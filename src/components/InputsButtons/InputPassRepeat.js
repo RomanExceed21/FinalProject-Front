@@ -9,7 +9,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 
-export default function InputPassRepeat({passwordRepeatInput, setPasswordRepeatInput}) {
+const InputPassRepeat = ({passwordRepeatInput, setPasswordRepeatInput}) => {
 
 
   const passwordRepeatChange = (prop) => (event) => {
@@ -65,3 +65,5 @@ export default function InputPassRepeat({passwordRepeatInput, setPasswordRepeatI
     </div>
   )
 }
+
+export default InputPassRepeat;

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './Registration.scss'
-import logo1 from '../../img/logo1.png';
-import build from '../../img/build.png'
+import InputLogin from '../InputsButtons/InputLogin';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import InputPassword from '../InputsButtons/InputPassword';
 import InputPassRepeat from '../InputsButtons/InputPassRepeat';
-import InputLogin from '../InputsButtons/InputLogin';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import logo1 from '../../img/logo1.png';
+import build from '../../img/build.png';
+import './Registration.scss';
 
-export default function Registration() {
-  const [users, setUsers] = useState([])
-  const [loginInput, setLoginInput] = useState('')  
+const Registration = () => {
+  const [loginInput, setLoginInput] = useState('');  
 
   const [passwordInput, setPasswordInput] = useState({
     amount: '',
@@ -30,34 +29,45 @@ export default function Registration() {
     showPassword: false,
   });
 
+  const [state, setState] = useState({
+    open: false,
+    message: ''
+  });
+
   let history = useHistory();
 
+  
   const loginChange = (e) => {
     setLoginInput(e.target.value);
   }
+  
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+  
+  const { open, message } = state;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const passwordField = passwordInput.password.split('')
-    if (loginInput.length < 6 || passwordInput.length < 6) {
-      alert('Логин и пароль должны быть не меньше 6 символов \nПароль должен содержать только латинские символы и минимум одну цифру')
+    if (loginInput.length < 6 || passwordInput.password.length < 6) {
+      setState({ ...state, open: true, message: 'Логин и пароль должны быть не меньше 6 символов \nПароль должен содержать только латинские символы и минимум одну цифру'});
       return
     }
 
-    passwordField.map ((element) => {
+    passwordField.forEach ((element) => {
       if (!/[a-zA-Z]/.test(element) && !/[0-9]/.test(element)) {
-        alert('Пароль должен состоять из латинских букв и цифр')
+        setState({ ...state, open: true, message: 'Пароль должен содержать только латинские буквы и цифры'});
         return
       }
     })
 
     if (!/[0-9]/.test(passwordField) || !/[a-zA-Z]/.test(passwordField)) {
-      alert('Пароль должен содержать хотя бы одну цифру или букву')
+      setState({ ...state, open: true, message: 'Пароль должен содержать хотя бы одну цифру или букву'});
       return
     }
 
     if(passwordRepeatInput.password !== passwordInput.password) {
-      alert('Поля Password и Repeat Password должны совпадать')
+      setState({ ...state, open: true, message: 'Поля Password и Repeat Password должны совпадать'});
       return
     }
 
@@ -69,7 +79,10 @@ export default function Registration() {
       login: loginInput, 
       password: passwordInput.password
     }).then(res => {
-      setUsers(res.data.data);
+      localStorage.setItem('token', res.data.token);
+      history.push('/mainPage');
+    }).catch(err => {
+      setState({...state, open: true, message: 'Ошибка авторизации! Такой пользователь уже существует'});
     });
   }
 
@@ -87,7 +100,7 @@ export default function Registration() {
           </div>
 
           <div className='form'>
-            <form onSubmit={handleSubmit}>
+            <div>
               <h1>Регистрация</h1>
               <p>Login:</p>
               <InputLogin 
@@ -108,7 +121,7 @@ export default function Registration() {
                 <Button 
                   className='regButton' 
                   variant="outlined"
-                  onClick={()=> history.push('/mainPage')}
+                  onClick={() => handleSubmit()}
                 >
                   Зарегистрироваться
                 </Button>
@@ -117,15 +130,25 @@ export default function Registration() {
                   variant="outlined"
                   onClick={()=> history.push('/autorization')}
                 >
-                  Авторизоваться
+                  Авторизация
                 </Button>
               </div>
-            </form>
-
-          </div>
+            </div>
+              <Snackbar
+                anchorOrigin={{ 
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                open={open}
+                onClose={handleClose}
+                message={message}
+              />
+        </div>
 
         </div>
       </div>
     </div>
   );
 }
+
+export default Registration;

@@ -8,16 +8,14 @@ import './App.scss';
 function App() {
   return (
     <Switch>
-      <Route path='/mainPage'>
-        <MainPage />
-      </Route>
-      <Route path='/autorization'>
+       <Route path='/autorization'>
         <Autorization />
       </Route>
       <Route path='/registration'>
         <Registration />
       </Route>
-      <Redirect from='/' to='/registration' />
+      <Route path='/mainPage' render={() => localStorage.getItem('token') ? <MainPage /> : <Redirect to="/autorization" />} />
+      <Redirect from='/' to='/autorization'/>
     </Switch>
   );
 }

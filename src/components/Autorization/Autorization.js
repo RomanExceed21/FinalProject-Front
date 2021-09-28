@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import InputPassword from '../InputsButtons/InputPassword';
+import InputLogin from '../InputsButtons/InputLogin';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import logo1 from '../../img/logo1.png';
 import build from '../../img/build.png'
 import '../Registration/Registration.scss'
-import InputPassword from '../InputsButtons/InputPassword';
-import InputLogin from '../InputsButtons/InputLogin';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
-export default function Autorization() {
+const Autorization = () => {
   const [loginInput, setLoginInput] = useState('')  
-
   const [passwordInput, setPasswordInput] = useState({
     amount: '',
     password: '',
@@ -19,15 +19,40 @@ export default function Autorization() {
     showPassword: false,
   });
 
-  let history = useHistory();
+  const [state, setState] = useState({
+    open: false,
+    message: ''
+  });
+
+  const history = useHistory();
+
+  const userLogin = () => {
+    if (!loginInput || !passwordInput.password) {
+      setState({...state, open: true, message: 'Необходимо ввести имя пользователя и пароль'});
+    } else {
+      axios.post('http://localhost:8000/login', {
+      login: loginInput, 
+      password: passwordInput.password
+      }).then(res => {
+        localStorage.setItem('token', res.data.token);
+        history.push('/mainPage');
+      }).catch(err => {
+        setState({...state, open: true, message: 'Ошибка авторизации! Проверьте вводимые данные.'});
+      });
+    }
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
 
   const loginChange = (e) => {
     setLoginInput(e.target.value);
   }
 
-  const handleSubmit = () => {
-    console.log('Autorization')
-  }
+  const { open, message } = state;
+
   return (
     <div className="registration">
       <div className='all-blocks'>
@@ -42,7 +67,7 @@ export default function Autorization() {
           </div>
 
           <div className='form'>
-            <form onSubmit={handleSubmit}>
+            <div>
               <h1>Авторизация</h1>
               <p>Login:</p>
               <InputLogin 
@@ -58,18 +83,29 @@ export default function Autorization() {
               <Button 
                 className='regButton' 
                 variant="outlined"
-                onClick={() => history.push('/registration')}
+                onClick={() => userLogin()}
               >
                 Авторизоваться
               </Button>
               <Button 
                 className='regButton' 
                 variant="outlined"
+                onClick={() => history.push('/registration')}
                 >
-                Зарегистрироваться
+                Регистрация
               </Button>
               </div>
-            </form>
+              
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                open={open}
+                onClose={handleClose}
+                message={message}
+              />
+              </div>
 
           </div>
 
@@ -78,3 +114,5 @@ export default function Autorization() {
     </div>
   )
 }
+
+export default Autorization;

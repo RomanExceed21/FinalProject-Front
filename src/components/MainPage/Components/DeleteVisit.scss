@@ -1,0 +1,107 @@
+.modal {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+}
+
+.modal.active {
+  transform: scale(1);
+}
+
+.modal-content {
+  padding: 0;
+  background-color: white;
+  width: 40%;
+  height: 400px;
+}
+
+.delete-header {
+  height: 100px;
+  box-shadow: 0 5px 10px rgb(175, 175, 175);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  h1 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 45px;
+  }
+}
+
+.delete-middle {
+  height: 145px;
+  font-size: 25px;
+  padding: 0 20px;
+}
+
+.delete-footer {
+  height: 100px;
+  box-shadow: 0 -5px 10px rgb(175, 175, 175);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.MuiButton-root.delete-footer-button{
+  margin-right: 20px
+}
+
+.MuiButton-root.delete-footer-button:hover {
+  background-color: #c5e9ff;
+}
+
+@media screen and  (max-width: 500px) {
+  .modal-content {
+    padding: 0;
+    background-color: white;
+    width: 70%;
+    height: 182px;
+  }
+  
+  .delete-header {
+    height: 30px;
+    box-shadow: 0 5px 10px rgb(175, 175, 175);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      margin: 0;
+      font-weight: 100;
+      font-size: 20px;
+    }
+  }
+  
+  .delete-middle {
+    height: 80px;
+    font-size: 15px;
+    padding: 0 5px;
+  }
+  
+  .delete-footer {
+    height: 30px;
+    box-shadow: 0 -5px 10px rgb(175, 175, 175);
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .MuiButton-root.delete-footer-button{
+    margin-right: 20px;
+    padding: 0 6px;
+  }
+  
+  .MuiButton-root.delete-footer-button:active {
+    background-color: #c5e9ff;
+  }  
+}

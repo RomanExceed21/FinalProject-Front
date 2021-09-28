@@ -1,13 +1,14 @@
-import React from 'react'
-import './PacientName.scss'
-import trash from '../../img/trash.svg'
-import pencil from '../../img/pencil.svg'
+import React, { useState } from 'react';
+import DeleteVisit from './DeleteVisit';
+import EditVisits from './EditVisits';
+import trash from '../../img/trash.svg';
+import pencil from '../../img/pencil.svg';
+import './PacientName.scss';
 
-export default function PacientName({allData}) {
+const PacientName = ({allData, setAllData}) => {
+  const [modalActiveDel, setModalActiveDel] = useState(false);
+  const [modalActiveEdit, setModalActivEdit] = useState('');
 
-  const delData = () => {
-    console.log('DELETE')
-  }
   return (
     allData.map((value, index) => {
       const { pacientName, doctorName, dateOfVisit, complaintText } = value;
@@ -30,17 +31,33 @@ export default function PacientName({allData}) {
             <img  
               src={trash} 
               alt=''
-              onClick={() => delData()} 
+              onClick={() => setModalActiveDel(index)} 
             />
             <img  
               src={pencil} 
               alt=''
-              onClick={() => console.log('pencil')} 
+              onClick={() => setModalActivEdit(index)} 
             />
           </div>  
-
+          {modalActiveDel === index && <DeleteVisit 
+            modalActiveDel={modalActiveDel}
+            setModalActiveDel={setModalActiveDel}
+            setAllData={setAllData}
+            allData={allData}
+            index={index}
+          />}
+          {modalActiveEdit === index && <EditVisits 
+            modalActiveEdit={modalActiveEdit}
+            setModalActivEdit={setModalActivEdit}
+            setAllData={setAllData}
+            allData={allData}
+            value={value}
+            index={index}
+          />}
         </div>
       )
-    })
+    })    
   )
 }
+
+export default PacientName;

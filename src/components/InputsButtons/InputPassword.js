@@ -8,10 +8,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import './LoginPassword.scss'
 
 
 
-export default function InputPassword({passwordInput, setPasswordInput}) {
+const InputPassword = ({passwordInput, setPasswordInput}) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -44,6 +45,7 @@ export default function InputPassword({passwordInput, setPasswordInput}) {
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
+          className='input-password-form'
           type={passwordInput.showPassword ? 'text' : 'password'}
           value={passwordInput.password}
           onChange={passwordChange('password')}
@@ -67,3 +69,5 @@ export default function InputPassword({passwordInput, setPasswordInput}) {
     </div>
   )
 }
+
+export default InputPassword;
