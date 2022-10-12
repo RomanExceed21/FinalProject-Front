@@ -1,0 +1,138 @@
+.modalEdit {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+}
+
+.modalEdit.activeEdit {
+  transform: scale(1);
+}
+
+.modalEdit-content {
+  padding: 0;
+  background-color: white;
+  width: 40%;
+
+  p {
+    margin: 10px;
+  }
+}
+
+.edit-header {
+  height: 50px;
+  box-shadow: 0 5px 10px rgb(175, 175, 175);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 35px;
+  }
+}
+
+.edit-middle {
+  padding: 0 20px;
+}
+
+.edit-footer {
+  box-shadow: 0 -5px 10px rgb(175, 175, 175);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.MuiButton-root.edit-footer-button{
+  margin: 20px;
+  width: 100px;
+}
+
+.MuiButton-root.edit-footer-button:hover {
+  background-color: #c5e9ff;
+}
+
+.input-edit.MuiFormControl-root {
+  width: 100%;
+  position: unset;
+  border: 1px solid rgb(187, 186, 186);
+}
+
+.input-edit .MuiOutlinedInput-input {
+  padding: 12px 5px;
+}
+
+.input-edit .PrivateNotchedOutline-root-1 {
+  border-style: none;
+}
+
+@media screen and  (max-width: 500px) {  
+  .modalEdit-content {
+    padding: 0;
+    background-color: white;
+    width: 80%;
+
+    p {
+      margin: 10px;
+    }
+  }
+  
+  .edit-header {
+    height: 30px;
+    box-shadow: 0 5px 10px rgb(175, 175, 175);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      font-weight: 100;
+      font-size: 20px;
+    }
+  }
+  
+  .edit-footer {
+    box-shadow: 0 -5px 10px rgb(175, 175, 175);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    height: 40px;
+  } 
+
+  .edit-footer-button.MuiButton-root{
+    padding: 0;
+    font-size: 12px;
+  }
+  
+  .MuiButton-root.edit-footer-button:active {
+    background-color: #c5e9ff;    
+  }
+  
+  .input-edit.MuiFormControl-root {
+    width: 100%;
+    position: unset;
+    border: 1px solid rgb(187, 186, 186);
+  }
+  
+  .input-edit .MuiOutlinedInput-input {
+    padding: 12px 5px;
+    font-size: 12px;
+  }
+  
+  .input-edit .PrivateNotchedOutline-root-1 {
+    border-style: none;
+  }
+}

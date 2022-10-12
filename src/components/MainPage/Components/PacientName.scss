@@ -1,0 +1,26 @@
+.total-list {
+  width: 100%;
+  display: flex;
+  border: 1px solid black;
+  border-top: none;
+  margin-right: 10px;
+}
+
+.total-list-block {
+  display: flex;
+  justify-content: center;
+  width: 22%;
+  border-right: 1px solid black;
+}
+
+.total-list-buttons {
+  width: 3%;
+  display: flex;
+  margin-left: 60px;
+}
+
+@media screen and  (max-width: 800px) {
+  .total-list-buttons {
+    margin-right: 30px;
+  }
+}
